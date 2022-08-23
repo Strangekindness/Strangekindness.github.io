@@ -102,4 +102,14 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/Strangekindness/Strangekindness.github.io
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: gh-pages
+
+## github token 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
+## 部署
+## hexo clean   hexo deploy
+
+## https://hexo.io/docs/writing
+# hexo new post <title>
