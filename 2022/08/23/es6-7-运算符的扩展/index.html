@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>7.运算符的扩展 | 陌良的个人主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="运算符的扩展本章介绍 ES6 后续标准添加的一些运算符。 指数运算符ES2016 新增了一个指数运算符（**）。 122 ** 2 &#x2F;&#x2F; 42 ** 3 &#x2F;&#x2F; 8  这个运算符的一个特点是右结合，而不是常见的左结合。多个指数运算符连用时，是从最右边开始计算的。 123&#x2F;&#x2F; 相当于 2 ** (3 ** 2)2 ** 3 ** 2&#x2F;&#x2F; 512  上面代码中，首先计算的是第二个指数运算符，而不是第一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7.运算符的扩展">
+<meta property="og:url" content="https://strangekindness.github.io/2022/08/23/es6-7-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%89%A9%E5%B1%95/index.html">
+<meta property="og:site_name" content="陌良的个人主页">
+<meta property="og:description" content="运算符的扩展本章介绍 ES6 后续标准添加的一些运算符。 指数运算符ES2016 新增了一个指数运算符（**）。 122 ** 2 &#x2F;&#x2F; 42 ** 3 &#x2F;&#x2F; 8  这个运算符的一个特点是右结合，而不是常见的左结合。多个指数运算符连用时，是从最右边开始计算的。 123&#x2F;&#x2F; 相当于 2 ** (3 ** 2)2 ** 3 ** 2&#x2F;&#x2F; 512  上面代码中，首先计算的是第二个指数运算符，而不是第一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-23T03:28:05.000Z">
+<meta property="article:modified_time" content="2022-08-23T06:01:07.613Z">
+<meta property="article:author" content="sy">
+<meta property="article:tag" content="es6">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="陌良的个人主页" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">陌良的个人主页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://Strangekindness.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-es6-7-运算符的扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/23/es6-7-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%89%A9%E5%B1%95/" class="article-date">
+  <time class="dt-published" datetime="2022-08-23T03:28:05.000Z" itemprop="datePublished">2022-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      7.运算符的扩展
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="运算符的扩展"><a href="#运算符的扩展" class="headerlink" title="运算符的扩展"></a>运算符的扩展</h1><p>本章介绍 ES6 后续标准添加的一些运算符。</p>
+<h2 id="指数运算符"><a href="#指数运算符" class="headerlink" title="指数运算符"></a>指数运算符</h2><p>ES2016 新增了一个指数运算符（<code>**</code>）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> ** <span class="number">2</span> <span class="comment">// 4</span></span><br><span class="line"><span class="number">2</span> ** <span class="number">3</span> <span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+
+<p>这个运算符的一个特点是右结合，而不是常见的左结合。多个指数运算符连用时，是从最右边开始计算的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于 2 ** (3 ** 2)</span></span><br><span class="line"><span class="number">2</span> ** <span class="number">3</span> ** <span class="number">2</span></span><br><span class="line"><span class="comment">// 512</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，首先计算的是第二个指数运算符，而不是第一个。</p>
+<h2 id="链判断运算符"><a href="#链判断运算符" class="headerlink" title="链判断运算符"></a>链判断运算符</h2><p>编程实务中，如果读取对象内部的某个属性，往往需要判断一下，属性的上层对象是否存在。比如，读取<code>message.body.user.firstName</code>这个属性，安全的写法是写成下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误的写法</span></span><br><span class="line"><span class="keyword">const</span>  firstName = message.<span class="property">body</span>.<span class="property">user</span>.<span class="property">firstName</span> || <span class="string">&#x27;default&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">const</span> firstName = (message</span><br><span class="line">  &amp;&amp; message.<span class="property">body</span></span><br><span class="line">  &amp;&amp; message.<span class="property">body</span>.<span class="property">user</span></span><br><span class="line">  &amp;&amp; message.<span class="property">body</span>.<span class="property">user</span>.<span class="property">firstName</span>) || <span class="string">&#x27;default&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，<code>firstName</code>属性在对象的第四层，所以需要判断四次，每一层是否有值。</p>
+<p>三元运算符<code>?:</code>也常用于判断对象是否存在。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fooInput = myForm.<span class="title function_">querySelector</span>(<span class="string">&#x27;input[name=foo]&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fooValue = fooInput ? fooInput.<span class="property">value</span> : <span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，必须先判断<code>fooInput</code>是否存在，才能读取<code>fooInput.value</code>。</p>
+<p>这样的层层判断非常麻烦，因此 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-optional-chaining">ES2020</a> 引入了“链判断运算符”（optional chaining operator）<code>?.</code>，简化上面的写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstName = message?.<span class="property">body</span>?.<span class="property">user</span>?.<span class="property">firstName</span> || <span class="string">&#x27;default&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> fooValue = myForm.<span class="title function_">querySelector</span>(<span class="string">&#x27;input[name=foo]&#x27;</span>)?.<span class="property">value</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码使用了<code>?.</code>运算符，直接在链式调用的时候判断，左侧的对象是否为<code>null</code>或<code>undefined</code>。如果是的，就不再往下运算，而是返回<code>undefined</code>。</p>
+<p>下面是判断对象方法是否存在，如果存在就立即执行的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iterator.<span class="property">return</span>?.()</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>iterator.return</code>如果有定义，就会调用该方法，否则<code>iterator.return</code>直接返回<code>undefined</code>，不再执行<code>?.</code>后面的部分。</p>
+<p>对于那些可能没有实现的方法，这个运算符尤其有用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (myForm.<span class="property">checkValidity</span>?.() === <span class="literal">false</span>) &#123;</span><br><span class="line">  <span class="comment">// 表单校验失败</span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，老式浏览器的表单对象可能没有<code>checkValidity()</code>这个方法，这时<code>?.</code>运算符就会返回<code>undefined</code>，判断语句就变成了<code>undefined === false</code>，所以就会跳过下面的代码。</p>
+<p>链判断运算符<code>?.</code>有三种写法。</p>
+<ul>
+<li><code>obj?.prop</code> &#x2F;&#x2F; 对象属性是否存在</li>
+<li><code>obj?.[expr]</code> &#x2F;&#x2F; 同上</li>
+<li><code>func?.(...args)</code> &#x2F;&#x2F; 函数或对象方法是否存在</li>
+</ul>
+<p>下面是<code>obj?.[expr]</code>用法的一个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> hex = <span class="string">&quot;#C0FFEE&quot;</span>.match(/<span class="comment">#([A-Z]+)/i)?.[1];</span></span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，字符串的<code>match()</code>方法，如果没有发现匹配会返回<code>null</code>，如果发现匹配会返回一个数组，<code>?.</code>运算符起到了判断作用。</p>
+<p>下面是<code>?.</code>运算符常见形式，以及不使用该运算符时的等价形式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a?.<span class="property">b</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a == <span class="literal">null</span> ? <span class="literal">undefined</span> : a.<span class="property">b</span></span><br><span class="line"></span><br><span class="line">a?.[x]</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a == <span class="literal">null</span> ? <span class="literal">undefined</span> : a[x]</span><br><span class="line"></span><br><span class="line">a?.<span class="title function_">b</span>()</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a == <span class="literal">null</span> ? <span class="literal">undefined</span> : a.<span class="title function_">b</span>()</span><br><span class="line"></span><br><span class="line">a?.()</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a == <span class="literal">null</span> ? <span class="literal">undefined</span> : <span class="title function_">a</span>()</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，特别注意后两种形式，如果<code>a?.b()</code>和<code>a?.()</code>。如果<code>a?.b()</code>里面的<code>a.b</code>有值，但不是函数，不可调用，那么<code>a?.b()</code>是会报错的。<code>a?.()</code>也是如此，如果<code>a</code>不是<code>null</code>或<code>undefined</code>，但也不是函数，那么<code>a?.()</code>会报错。</p>
+<p>使用这个运算符，有几个注意点。</p>
+<p>（1）短路机制</p>
+<p>本质上，<code>?.</code>运算符相当于一种短路机制，只要不满足条件，就不再往下执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a?.[++x]</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">a == <span class="literal">null</span> ? <span class="literal">undefined</span> : a[++x]</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，如果<code>a</code>是<code>undefined</code>或<code>null</code>，那么<code>x</code>不会进行递增运算。也就是说，链判断运算符一旦为真，右侧的表达式就不再求值。</p>
+<p>（2）括号的影响</p>
+<p>如果属性链有圆括号，链判断运算符对圆括号外部没有影响，只对圆括号内部有影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(a?.<span class="property">b</span>).<span class="property">c</span></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">(a == <span class="literal">null</span> ? <span class="literal">undefined</span> : a.<span class="property">b</span>).<span class="property">c</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>?.</code>对圆括号外部没有影响，不管<code>a</code>对象是否存在，圆括号后面的<code>.c</code>总是会执行。</p>
+<p>一般来说，使用<code>?.</code>运算符的场合，不应该使用圆括号。</p>
+<p>（3）报错场合</p>
+<p>以下写法是禁止的，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line"><span class="keyword">new</span> a?.()</span><br><span class="line"><span class="keyword">new</span> a?.<span class="title function_">b</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链判断运算符的右侧有模板字符串</span></span><br><span class="line">a?.<span class="string">`&#123;b&#125;`</span></span><br><span class="line">a?.<span class="property">b</span><span class="string">`&#123;c&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 链判断运算符的左侧是 super</span></span><br><span class="line"><span class="variable language_">super</span>?.()</span><br><span class="line"><span class="variable language_">super</span>?.<span class="property">foo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 链运算符用于赋值运算符左侧</span></span><br><span class="line">a?.<span class="property">b</span> = c</span><br></pre></td></tr></table></figure>
+
+<p>（4）右侧不得为十进制数值</p>
+<p>为了保证兼容以前的代码，允许<code>foo?.3:0</code>被解析成<code>foo ? .3 : 0</code>，因此规定如果<code>?.</code>后面紧跟一个十进制数字，那么<code>?.</code>不再被看成是一个完整的运算符，而会按照三元运算符进行处理，也就是说，那个小数点会归属于后面的十进制数字，形成一个小数。</p>
+<h2 id="Null-判断运算符"><a href="#Null-判断运算符" class="headerlink" title="Null 判断运算符"></a>Null 判断运算符</h2><p>读取对象属性的时候，如果某个属性的值是<code>null</code>或<code>undefined</code>，有时候需要为它们指定默认值。常见做法是通过<code>||</code>运算符指定默认值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerText = response.<span class="property">settings</span>.<span class="property">headerText</span> || <span class="string">&#x27;Hello, world!&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> animationDuration = response.<span class="property">settings</span>.<span class="property">animationDuration</span> || <span class="number">300</span>;</span><br><span class="line"><span class="keyword">const</span> showSplashScreen = response.<span class="property">settings</span>.<span class="property">showSplashScreen</span> || <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面的三行代码都通过<code>||</code>运算符指定默认值，但是这样写是错的。开发者的原意是，只要属性的值为<code>null</code>或<code>undefined</code>，默认值就会生效，但是属性的值如果为空字符串或<code>false</code>或<code>0</code>，默认值也会生效。</p>
+<p>为了避免这种情况，<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-nullish-coalescing">ES2020</a> 引入了一个新的 Null 判断运算符<code>??</code>。它的行为类似<code>||</code>，但是只有运算符左侧的值为<code>null</code>或<code>undefined</code>时，才会返回右侧的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerText = response.<span class="property">settings</span>.<span class="property">headerText</span> ?? <span class="string">&#x27;Hello, world!&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> animationDuration = response.<span class="property">settings</span>.<span class="property">animationDuration</span> ?? <span class="number">300</span>;</span><br><span class="line"><span class="keyword">const</span> showSplashScreen = response.<span class="property">settings</span>.<span class="property">showSplashScreen</span> ?? <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，默认值只有在左侧属性值为<code>null</code>或<code>undefined</code>时，才会生效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-7-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="cl75s7jr4000eigmf9kx726qt" data-title="7.运算符的扩展" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/08/23/es6-6-%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          6.数组的扩展
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/23/es6-8-Promise-%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">8.Promise 对象</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/es6/" style="font-size: 10px;">es6</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/">1.ECMAScript 6 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-2-let-%E5%92%8C-const-%E5%91%BD%E4%BB%A4/">2.let 和 const 命令</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">3.变量的解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%89%A9%E5%B1%95/">4.字符串的扩展字符串的扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-5-%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/">5.函数的扩展</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 sy<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
