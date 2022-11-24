@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 陌良的个人主页
+title: Strangekindness的个人主页
 subtitle: ''
 description: ''
 keywords:
@@ -108,6 +108,7 @@ deploy:
   branch: gh-pages
 
 ## github token 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
+##  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
 ## 部署
 ## hexo clean   hexo deploy
 

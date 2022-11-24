@@ -200,4 +200,5 @@ logstash -f log-file.conf --config.reload.automatic
 
 
 最后去kinaba查询数据就可以了
+
 复杂的地方在于对日志的处理，尚且需要研究
