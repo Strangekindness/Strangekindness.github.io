@@ -4,10 +4,10 @@
 
 # Site
 title: Strangekindness的个人主页
-subtitle: ''
-description: ''
+subtitle: 'think outside the box'
+description: 'think outside the box'
 keywords:
-author: sy
+author: Strangekindness
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
@@ -97,7 +97,9 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landscape
+#https://butterfly.js.org/posts/21cfbf15/#%E6%87%89%E7%94%A8%E4%B8%BB%E9%A1%8C:
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -110,7 +112,7 @@ deploy:
 ## 部署
 ## hexo clean & hexo deploy
 ## 密码必须用token
-# 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
+# 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
 
 ## https://hexo.io/docs/writing
 # hexo new post <title>
