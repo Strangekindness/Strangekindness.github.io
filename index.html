@@ -73,8 +73,8 @@
   
     <article id="post-elkb-elkb搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/" class="article-date">
-  <time class="dt-published" datetime="2022-08-24T03:53:40.811Z" itemprop="datePublished">2022-08-24</time>
+    <a href="/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-11-24T03:28:11.000Z" itemprop="datePublished">2022-11-24</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
+      <a class="p-name article-title" href="/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
     </h1>
   
 
@@ -121,7 +121,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 npm install --unsafe-perm</span><br></pre></td></tr></table></figure>
 <p>安装成功后 修改Gruntfile.js文件，connect–&gt;server–&gt;options下面添加：hostname:’ ** ,允许所有IP可以访问，也可以指定IP：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">connect: &#123;  </span><br><span class="line">    server: &#123;  </span><br><span class="line">        options: &#123;  </span><br><span class="line">            hostname: &#x27;*&#x27;,</span><br><span class="line">            port: 9100,</span><br><span class="line">            base: &#x27;.&#x27;,</span><br><span class="line">            keepalive: true</span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>修改_site下的app.js ，修改es的地址为192.168.190.173，如下图,4388行<br><img src="/img.png" alt="img.png"><br>启动head插件</p>
+<p>修改_site下的app.js ，修改es的地址为192.168.190.173，如下图,4388行<br><img src="/images/elkb/img.png" alt="img.png"><br>启动head插件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
 <p>注意：如果head插件无法连接es集群服务，则需要修改es的配置文件允许跨域访问的参数 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br></pre></td></tr></table></figure>
@@ -135,11 +135,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.190.173:5601</span><br></pre></td></tr></table></figure>
 
 <p>4.创建索引模式<br>在management-&gt;Stack Management菜单，进入后，左侧的索引模式子菜单，进入，进行创建索引模式</p>
-<p><img src="/img_1.png" alt="img_1.png"></p>
-<p>从es中查询所有的索引，可以使用通配符进行查询<br><img src="/img_2.png" alt="img_2.png"></p>
-<p>创建完之后，进入home首页，点击 分析 一栏<br><img src="/img_3.png" alt="img_3.png"></p>
-<p>点击 Discovery<br><img src="/img_4.png" alt="img_4.png"></p>
-<p>进入索引查询界面，可输入检索条件，查询索引对应的日志明细<br><img src="/img_5.png" alt="img_5.png"></p>
+<p><img src="/images/elkb/img_1.png" alt="img_1.png"></p>
+<p>从es中查询所有的索引，可以使用通配符进行查询<br><img src="/images/elkb/img_2.png" alt="img_2.png"></p>
+<p>创建完之后，进入home首页，点击 分析 一栏<br><img src="/images/elkb/img_3.png" alt="img_3.png"></p>
+<p>点击 Discovery<br><img src="/images/elkb/img_4.png" alt="img_4.png"></p>
+<p>进入索引查询界面，可输入检索条件，查询索引对应的日志明细<br><img src="/images/elkb/img_5.png" alt="img_5.png"></p>
 <h3 id="三、安装部署Filebeats"><a href="#三、安装部署Filebeats" class="headerlink" title="三、安装部署Filebeats"></a>三、安装部署Filebeats</h3><p>1.配置filebeat.yml，主要是输入和输出，输入为某类log文件，输出为logstash</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">filebeat.inputs:</span><br><span class="line">- type: log</span><br><span class="line">  enabled: true</span><br><span class="line">  paths:</span><br><span class="line">    - D:\logs\shiroDemo\*.log</span><br><span class="line">    </span><br><span class="line">output.logstash:</span><br><span class="line">  # The Logstash hosts</span><br><span class="line">  hosts: [&quot;192.168.190.173:5044&quot;]</span><br></pre></td></tr></table></figure>
 
@@ -160,10 +160,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/" data-id="clauf6nb20001hsmfahtcfg0w" data-title="ELKB日志中心搭建、日志收集配置-windows版" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/" data-id="claugr2tc0001nomf93ryh0bk" data-title="ELKB日志中心搭建、日志收集配置-windows版" class="article-share-link">分享</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elkb/" rel="tag">elkb</a></li></ul>
+
     </footer>
   </div>
   
@@ -237,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/" data-id="clauf6nb40002hsmf7nurcb6d" data-title="1.ECMAScript 6 简介" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/" data-id="claugr2te0002nomf9waj7kpc" data-title="1.ECMAScript 6 简介" class="article-share-link">分享</a>
       
       
       
@@ -397,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-2-let-%E5%92%8C-const-%E5%91%BD%E4%BB%A4/" data-id="clauf6nb80006hsmfdtvca0bi" data-title="2.let 和 const 命令" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-2-let-%E5%92%8C-const-%E5%91%BD%E4%BB%A4/" data-id="claugr2th0005nomfbrcy0h2h" data-title="2.let 和 const 命令" class="article-share-link">分享</a>
       
       
       
@@ -593,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" data-id="clauf6nb70005hsmf4y5g4f2s" data-title="3.变量的解构赋值" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" data-id="claugr2ti0006nomfcq2y5hbx" data-title="3.变量的解构赋值" class="article-share-link">分享</a>
       
       
       
@@ -709,7 +711,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="clauf6nb90007hsmf29c237g3" data-title="4.字符串的扩展字符串的扩展" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="claugr2tl000anomfgcz9b5kq" data-title="4.字符串的扩展字符串的扩展" class="article-share-link">分享</a>
       
       
       
@@ -861,7 +863,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-5-%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="clauf6nbc000ahsmf9euq9wie" data-title="5.函数的扩展" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-5-%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="claugr2tk0009nomf3ps0dm9q" data-title="5.函数的扩展" class="article-share-link">分享</a>
       
       
       
@@ -955,7 +957,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-6-%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="clauf6nbd000chsmf0nka83e3" data-title="6.数组的扩展" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-6-%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="claugr2tp000dnomfg6vxhz4f" data-title="6.数组的扩展" class="article-share-link">分享</a>
       
       
       
@@ -1063,7 +1065,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-7-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="clauf6nbe000fhsmf3ex4hwnq" data-title="7.运算符的扩展" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-7-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%89%A9%E5%B1%95/" data-id="claugr2tr000fnomf258z4ibd" data-title="7.运算符的扩展" class="article-share-link">分享</a>
       
       
       
@@ -1337,7 +1339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-8-Promise-%E5%AF%B9%E8%B1%A1/" data-id="clauf6nbk000phsmf7he53bem" data-title="8.Promise 对象" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-8-Promise-%E5%AF%B9%E8%B1%A1/" data-id="claugr2u3000snomf6s3cgrdw" data-title="8.Promise 对象" class="article-share-link">分享</a>
       
       
       
@@ -1511,7 +1513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://strangekindness.github.io/2022/08/23/es6-9-async%E5%87%BD%E6%95%B0/" data-id="clauf6nbj000mhsmf25k10iag" data-title="9.async 函数" class="article-share-link">分享</a>
+      <a data-url="https://strangekindness.github.io/2022/08/23/es6-9-async%E5%87%BD%E6%95%B0/" data-id="claugr2tz000pnomf6y2p7rl2" data-title="9.async 函数" class="article-share-link">分享</a>
       
       
       
@@ -1543,7 +1545,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/elkb/" rel="tag">elkb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
     </div>
   </div>
 
@@ -1553,7 +1555,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/es6/" style="font-size: 10px;">es6</a>
+      <a href="/tags/elkb/" style="font-size: 10px;">elkb</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a>
     </div>
   </div>
 
@@ -1562,7 +1564,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
     </div>
   </div>
 
@@ -1575,7 +1577,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
+            <a href="/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
           </li>
         
           <li>
