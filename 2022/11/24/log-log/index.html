@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>后端自定义log使用手册 | Strangekindness的个人主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一、执行建表语句，生成sys_oper_log表 二、项目中引入必要依赖12345678910111213&lt;!-- JSON 解析器和生成器 --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.alibaba.fastjson2&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;fastjson2&lt;&#x2F;artifactId">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端自定义log使用手册">
+<meta property="og:url" content="https://strangekindness.github.io/2022/11/24/log-log/index.html">
+<meta property="og:site_name" content="Strangekindness的个人主页">
+<meta property="og:description" content="一、执行建表语句，生成sys_oper_log表 二、项目中引入必要依赖12345678910111213&lt;!-- JSON 解析器和生成器 --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.alibaba.fastjson2&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;fastjson2&lt;&#x2F;artifactId">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://strangekindness.github.io/images/log/image-20221124110317539.png">
+<meta property="og:image" content="https://strangekindness.github.io/images/log/image-20221124110535664.png">
+<meta property="og:image" content="https://strangekindness.github.io/images/log/image-20221124111949917.png">
+<meta property="og:image" content="https://strangekindness.github.io/images/log/image-20221124111744052.png">
+<meta property="og:image" content="https://strangekindness.github.io/images/log/image-20221124133619713.png">
+<meta property="article:published_time" content="2022-11-24T05:28:11.000Z">
+<meta property="article:modified_time" content="2022-11-24T06:15:09.021Z">
+<meta property="article:author" content="sy">
+<meta property="article:tag" content="log">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://strangekindness.github.io/images/log/image-20221124110317539.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Strangekindness的个人主页" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Strangekindness的个人主页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://Strangekindness.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-log-log" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/24/log-log/" class="article-date">
+  <time class="dt-published" datetime="2022-11-24T05:28:11.000Z" itemprop="datePublished">2022-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      后端自定义log使用手册
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、执行建表语句，生成sys-oper-log表"><a href="#一、执行建表语句，生成sys-oper-log表" class="headerlink" title="一、执行建表语句，生成sys_oper_log表"></a>一、执行建表语句，生成sys_oper_log表</h2><p><img src="/images/log/image-20221124110317539.png" alt="image-20221124110317539"></p>
+<h2 id="二、项目中引入必要依赖"><a href="#二、项目中引入必要依赖" class="headerlink" title="二、项目中引入必要依赖"></a>二、项目中引入必要依赖</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- JSON 解析器和生成器 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.fastjson2&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;fastjson2&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;fastjson.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- elasticsearch --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.3.3.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、将log文件夹整体复制到下图位置"><a href="#三、将log文件夹整体复制到下图位置" class="headerlink" title="三、将log文件夹整体复制到下图位置"></a>三、将log文件夹整体复制到下图位置</h2><p><img src="/images/log/image-20221124110535664.png" alt="image-20221124110535664"></p>
+<h2 id="四、在需要抓取日志的controller中的方法上添加注解-Log"><a href="#四、在需要抓取日志的controller中的方法上添加注解-Log" class="headerlink" title="四、在需要抓取日志的controller中的方法上添加注解@Log"></a>四、在需要抓取日志的controller中的方法上添加注解@Log</h2><p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(value = &quot;分页查询列表展示信息&quot;)</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/find/list&quot;)</span></span><br><span class="line">    <span class="meta">@Log(title = &quot;种植企业列表&quot;, businessType = SELECT, operatorType = MANAGE)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseResult&lt;PageInfo&lt;Map&lt;String,Object&gt;&gt;&gt; <span class="title function_">findPageList</span><span class="params">(<span class="meta">@RequestBody</span> Map&lt;String,Object&gt; entity, Integer page, Integer size)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ResponseResult.success(plantService.findPageList(entity,page,size));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解中有五种参数可以供需添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public @interface Log &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 模块</span><br><span class="line">     */</span><br><span class="line">    String title() default &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 功能(查询，插入，更新等)</span><br><span class="line">     */</span><br><span class="line">    BusinessType businessType() default BusinessType.OTHER;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 操作人类别</span><br><span class="line">     */</span><br><span class="line">    OperatorType operatorType() default OperatorType.OTHER;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 是否保存请求的参数</span><br><span class="line">     */</span><br><span class="line">    boolean isSaveRequestData() default true;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 是否保存响应的参数</span><br><span class="line">     */</span><br><span class="line">    boolean isSaveResponseData() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、访问此接口即可生成日志"><a href="#五、访问此接口即可生成日志" class="headerlink" title="五、访问此接口即可生成日志"></a>五、访问此接口即可生成日志</h2><p>日志会同步存入mysql及Elasticsearch，代码位置如下，如果不想存入es，注释掉下方es代码即可</p>
+<p><img src="/images/log/image-20221124111949917.png" alt="image-20221124111949917"></p>
+<p><strong>如果要存入Elasticsearch，则先要启动Elasticsearch，es下载启动方式如下</strong></p>
+<h3 id="1-先下载es和kibana的包"><a href="#1-先下载es和kibana的包" class="headerlink" title="1.先下载es和kibana的包"></a><strong>1.先下载es和kibana的包</strong></h3><p>kibana是为Elasticsearch设计的开源分析和可视化平台，在win7无法启动，不下载也行，不耽误在系统中查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 Elastic 的官方网站：https://www.elastic.co/</span><br><span class="line">2 ElasticSearch7.16.2 ：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.16.2-windows-x86_64.zip</span><br><span class="line">3 kibana7.16.2：https://artifacts.elastic.co/downloads/kibana/kibana-7.16.2-linux-windows-x86_64.zip</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-修改配置参数-x2F-config-x2F-elasticsearch-yml"><a href="#2-修改配置参数-x2F-config-x2F-elasticsearch-yml" class="headerlink" title="2.修改配置参数  &#x2F;config&#x2F;elasticsearch.yml"></a><strong>2.修改配置参数  &#x2F;config&#x2F;elasticsearch.yml</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1 #集群名称</span><br><span class="line">2 cluster.name: es</span><br><span class="line">3 #集群节点名称</span><br><span class="line">4 node.name: node-173</span><br><span class="line">5 #绑定的IP地址</span><br><span class="line">6 network.host: 192.168.190.173</span><br><span class="line">7 #HTTP的端口号</span><br><span class="line">8 http.port: 9200</span><br><span class="line">9 #新节点用于加入集群的主节点列表</span><br><span class="line">10 discovery.seed_hosts: [&quot;192.168.190.173&quot;]</span><br><span class="line">11 #bootstrap集群的初始列表</span><br><span class="line">12 cluster.initial_master_nodes: [&quot;node-173&quot;]</span><br><span class="line">13 path.data=指向一个存储空间比较大的分区</span><br><span class="line">14 path.logs=指向一个存储空间比较大的分区</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启动-x2F-bin-x2F-elasticsearch-bat"><a href="#3-启动-x2F-bin-x2F-elasticsearch-bat" class="headerlink" title="3.启动  &#x2F;bin&#x2F;elasticsearch.bat"></a><strong>3.启动  &#x2F;bin&#x2F;elasticsearch.bat</strong></h3><p>启动后访问 192.168.190.173:9200,出现以下所示即启动成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;node-173&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;es&quot;,</span><br><span class="line">  &quot;cluster_uuid&quot; : &quot;fMjQC2VwTJmZQzR3e23aEw&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;7.16.2&quot;,</span><br><span class="line">    &quot;build_flavor&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;build_type&quot; : &quot;zip&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;2b937c44140b6559905130a8650c64dbd0879cfb&quot;,</span><br><span class="line">    &quot;build_date&quot; : &quot;2021-12-18T19:42:46.604893745Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;8.10.1&quot;,</span><br><span class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,</span><br><span class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-然后在application中增加此配置，es有用户名密码的话可自行添加配置"><a href="#4-然后在application中增加此配置，es有用户名密码的话可自行添加配置" class="headerlink" title="4.然后在application中增加此配置，es有用户名密码的话可自行添加配置"></a><strong>4.然后在application中增加此配置，es有用户名密码的话可自行添加配置</strong></h3><p><img src="/images/log/image-20221124111744052.png" alt="image-20221124111744052"></p>
+<h2 id="六、目录结构说明"><a href="#六、目录结构说明" class="headerlink" title="六、目录结构说明"></a>六、目录结构说明</h2><p><img src="/images/log/image-20221124133619713.png" alt="image-20221124133619713"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">百度网盘</span><br><span class="line">链接: https://pan.baidu.com/s/1uzU0wPWh8lLAl6YzzPC8Lg </span><br><span class="line">提取码: gyeu </span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://strangekindness.github.io/2022/11/24/log-log/" data-id="clauooiiv000i8cmf2ge41eaj" data-title="后端自定义log使用手册" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/" rel="tag">log</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">ELKB日志中心搭建、日志收集配置-windows版</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/elkb/" rel="tag">elkb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/" rel="tag">log</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/elkb/" style="font-size: 10px;">elkb</a> <a href="/tags/es6/" style="font-size: 20px;">es6</a> <a href="/tags/log/" style="font-size: 10px;">log</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/24/log-log/">后端自定义log使用手册</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/">1.ECMAScript 6 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-2-let-%E5%92%8C-const-%E5%91%BD%E4%BB%A4/">2.let 和 const 命令</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">3.变量的解构赋值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 sy<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
