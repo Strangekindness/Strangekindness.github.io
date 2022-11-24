@@ -108,10 +108,10 @@ deploy:
   branch: gh-pages
 
 ## 部署
-## hexo clean   hexo deploy
+## hexo clean & hexo deploy
 ## 密码必须用token
-# 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
+# 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
 
 ## https://hexo.io/docs/writing
 # hexo new post <title>
-#leohero_sy@163.com
+
