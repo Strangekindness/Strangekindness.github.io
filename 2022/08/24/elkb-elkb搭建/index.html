@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ELKB日志中心搭建、日志收集配置-windows版 | Strangekindness的个人主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="下载所需要的包1234561 Elastic 的官方网站：https:&#x2F;&#x2F;www.elastic.co&#x2F;2 ElasticSearch7.16.2 ：https:&#x2F;&#x2F;artifacts.elastic.co&#x2F;downloads&#x2F;elasticsearch&#x2F;elasticsearch-7.16.2-windows-x86_64.zip3 Logstash7.16.2：https:&#x2F;&#x2F;artifact">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELKB日志中心搭建、日志收集配置-windows版">
+<meta property="og:url" content="https://strangekindness.github.io/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Strangekindness的个人主页">
+<meta property="og:description" content="下载所需要的包1234561 Elastic 的官方网站：https:&#x2F;&#x2F;www.elastic.co&#x2F;2 ElasticSearch7.16.2 ：https:&#x2F;&#x2F;artifacts.elastic.co&#x2F;downloads&#x2F;elasticsearch&#x2F;elasticsearch-7.16.2-windows-x86_64.zip3 Logstash7.16.2：https:&#x2F;&#x2F;artifact">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://strangekindness.github.io/img.png">
+<meta property="og:image" content="https://strangekindness.github.io/img_1.png">
+<meta property="og:image" content="https://strangekindness.github.io/img_2.png">
+<meta property="og:image" content="https://strangekindness.github.io/img_3.png">
+<meta property="og:image" content="https://strangekindness.github.io/img_4.png">
+<meta property="og:image" content="https://strangekindness.github.io/img_5.png">
+<meta property="article:published_time" content="2022-08-24T03:53:40.811Z">
+<meta property="article:modified_time" content="2022-10-28T05:15:05.244Z">
+<meta property="article:author" content="sy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://strangekindness.github.io/img.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Strangekindness的个人主页" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Strangekindness的个人主页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://Strangekindness.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-elkb-elkb搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-08-24T03:53:40.811Z" itemprop="datePublished">2022-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      ELKB日志中心搭建、日志收集配置-windows版
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="下载所需要的包"><a href="#下载所需要的包" class="headerlink" title="下载所需要的包"></a>下载所需要的包</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 Elastic 的官方网站：https://www.elastic.co/</span><br><span class="line">2 ElasticSearch7.16.2 ：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.16.2-windows-x86_64.zip</span><br><span class="line">3 Logstash7.16.2：https://artifacts.elastic.co/downloads/logstash/logstash-7.16.2-windows-x86_64.zip</span><br><span class="line">4 kibana7.16.2：https://artifacts.elastic.co/downloads/kibana/kibana-7.16.2-linux-windows-x86_64.zip</span><br><span class="line">5 filebeat7.16.2:https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.16.2-windows-x86_64.zip</span><br><span class="line">6 以上版本均为7.16.2</span><br></pre></td></tr></table></figure>
+
+<h3 id="一、安装部署ElasticSearch"><a href="#一、安装部署ElasticSearch" class="headerlink" title="一、安装部署ElasticSearch"></a>一、安装部署ElasticSearch</h3><p>1.修改配置参数  &#x2F;config&#x2F;elasticsearch.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1 #集群名称</span><br><span class="line">2 cluster.name: es</span><br><span class="line">3 #集群节点名称</span><br><span class="line">4 node.name: node-173</span><br><span class="line">5 #绑定的IP地址</span><br><span class="line">6 network.host: 192.168.190.173</span><br><span class="line">7 #HTTP的端口号</span><br><span class="line">8 http.port: 9200</span><br><span class="line">9 #新节点用于加入集群的主节点列表</span><br><span class="line">10 discovery.seed_hosts: [&quot;192.168.190.173&quot;]</span><br><span class="line">11 #bootstrap集群的初始列表</span><br><span class="line">12 cluster.initial_master_nodes: [&quot;node-173&quot;]</span><br><span class="line">13 path.data=指向一个存储空间比较大的分区</span><br><span class="line">14 path.logs=指向一个存储空间比较大的分区</span><br></pre></td></tr></table></figure>
+<p>2.启动  &#x2F;bin&#x2F;elasticsearch.bat</p>
+<p>启动后访问 192.168.190.173:9200,出现以下所示即启动成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;node-173&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;es&quot;,</span><br><span class="line">  &quot;cluster_uuid&quot; : &quot;fMjQC2VwTJmZQzR3e23aEw&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;7.16.2&quot;,</span><br><span class="line">    &quot;build_flavor&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;build_type&quot; : &quot;zip&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;2b937c44140b6559905130a8650c64dbd0879cfb&quot;,</span><br><span class="line">    &quot;build_date&quot; : &quot;2021-12-18T19:42:46.604893745Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;8.10.1&quot;,</span><br><span class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,</span><br><span class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.报错解决</p>
+<p>启动时如果报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap check failure [1] of [2]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65535]</span><br></pre></td></tr></table></figure>
+<p>编辑&#x2F;etc&#x2F;security&#x2F;limits.conf</p>
+<p>添加下面内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 * soft nofile 65536</span><br><span class="line">2 * hard nofile 65536</span><br></pre></td></tr></table></figure>
+<p>出现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap check failure [2] of [2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span><br></pre></td></tr></table></figure>
+<p>解决办法：<br>在&#x2F;etc&#x2F;sysctl.conf文件最后添加一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 vm.max_map_count=262144</span><br></pre></td></tr></table></figure>
+<p>4.安装head插件（es集群可选安装,单机可以不安装）</p>
+<p>npm安装grunt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 npm install -g grunt-cli</span><br></pre></td></tr></table></figure>
+
+<p>下载elasticsearch-head插件，可以先创建一个目录，在目录下进行下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/mobz/elasticsearch-head.git</span><br></pre></td></tr></table></figure>
+
+<p>进入elasticsearch-head目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 npm install --unsafe-perm</span><br></pre></td></tr></table></figure>
+<p>安装成功后 修改Gruntfile.js文件，connect–&gt;server–&gt;options下面添加：hostname:’ ** ,允许所有IP可以访问，也可以指定IP：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">connect: &#123;  </span><br><span class="line">    server: &#123;  </span><br><span class="line">        options: &#123;  </span><br><span class="line">            hostname: &#x27;*&#x27;,</span><br><span class="line">            port: 9100,</span><br><span class="line">            base: &#x27;.&#x27;,</span><br><span class="line">            keepalive: true</span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>修改_site下的app.js ，修改es的地址为192.168.190.173，如下图,4388行<br><img src="/img.png" alt="img.png"><br>启动head插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+<p>注意：如果head插件无法连接es集群服务，则需要修改es的配置文件允许跨域访问的参数 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<p>访问head插件地址用 <a target="_blank" rel="noopener" href="http://192.168.190.173:9100/">http://192.168.190.173:9100</a></p>
+<h3 id="二、安装部署kibana"><a href="#二、安装部署kibana" class="headerlink" title="二、安装部署kibana"></a>二、安装部署kibana</h3><p>1.修改kibana.yml文件   \config\kibana.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#kibana后端服务器的主机地址</span><br><span class="line">server.host : &quot;192.168.190.173&quot;</span><br><span class="line">#用来处理所有查询的 Elasticsearch 实例的 URL,连接Elasticsearch的地址</span><br><span class="line">elasticsearch.hosts: [&quot;http://192.168.190.173:9200&quot;]  </span><br><span class="line">#汉化</span><br><span class="line">i18n.locale:&quot;zh-CN&quot;</span><br></pre></td></tr></table></figure>
+<p>2.启动  \bin\kibana.bat</p>
+<p>此处有一个大坑,本机为win7且安装了nvm,导致kibana无法启动,原因为无法启动node16….千万别百度改注册表</p>
+<p>win10可以启动</p>
+<p>3.访问kibana</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.190.173:5601</span><br></pre></td></tr></table></figure>
+
+<p>4.创建索引模式<br>在management-&gt;Stack Management菜单，进入后，左侧的索引模式子菜单，进入，进行创建索引模式</p>
+<p><img src="/img_1.png" alt="img_1.png"></p>
+<p>从es中查询所有的索引，可以使用通配符进行查询<br><img src="/img_2.png" alt="img_2.png"></p>
+<p>创建完之后，进入home首页，点击 分析 一栏<br><img src="/img_3.png" alt="img_3.png"></p>
+<p>点击 Discovery<br><img src="/img_4.png" alt="img_4.png"></p>
+<p>进入索引查询界面，可输入检索条件，查询索引对应的日志明细<br><img src="/img_5.png" alt="img_5.png"></p>
+<h3 id="三、安装部署Filebeats"><a href="#三、安装部署Filebeats" class="headerlink" title="三、安装部署Filebeats"></a>三、安装部署Filebeats</h3><p>1.配置filebeat.yml，主要是输入和输出，输入为某类log文件，输出为logstash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">filebeat.inputs:</span><br><span class="line">- type: log</span><br><span class="line">  enabled: true</span><br><span class="line">  paths:</span><br><span class="line">    - D:\logs\shiroDemo\*.log</span><br><span class="line">    </span><br><span class="line">output.logstash:</span><br><span class="line">  # The Logstash hosts</span><br><span class="line">  hosts: [&quot;192.168.190.173:5044&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>2.启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebeat -e -c filebeat.yml -d &quot;publish&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、安装部署Logstash"><a href="#四、安装部署Logstash" class="headerlink" title="四、安装部署Logstash"></a>四、安装部署Logstash</h3><p>1.在logstash安装目录&#x2F;bin下新建一个文件log-file.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    beats &#123;</span><br><span class="line">       port =&gt; &quot;5044&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch&#123;</span><br><span class="line">        hosts =&gt; [ &quot;http://192.168.190.173:9200&quot; ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.启动</p>
+<p>–config.reload.automatic选项的意思是启用自动配置加载，以至于每次你修改完配置文件以后无需停止然后重启Logstash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logstash -f log-file.conf --config.reload.automatic</span><br></pre></td></tr></table></figure>
+
+
+<p>最后去kinaba查询数据就可以了</p>
+<p>复杂的地方在于对日志的处理，尚且需要研究</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://strangekindness.github.io/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/" data-id="claudnln6000114mfdli4dwc6" data-title="ELKB日志中心搭建、日志收集配置-windows版" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">1.ECMAScript 6 简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/es6/" style="font-size: 10px;">es6</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/24/elkb-elkb%E6%90%AD%E5%BB%BA/">ELKB日志中心搭建、日志收集配置-windows版</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-1-ECMAScript-6%E7%AE%80%E4%BB%8B/">1.ECMAScript 6 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-2-let-%E5%92%8C-const-%E5%91%BD%E4%BB%A4/">2.let 和 const 命令</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">3.变量的解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/es6-4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%89%A9%E5%B1%95/">4.字符串的扩展字符串的扩展</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 sy<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
