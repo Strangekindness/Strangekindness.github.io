@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -107,10 +107,11 @@ deploy:
   # example, https://github.com/hexojs/hexojs.github.io
   branch: gh-pages
 
-## github token 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
-##  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
 ## 部署
 ## hexo clean   hexo deploy
+## 密码必须用token
+# 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
 
 ## https://hexo.io/docs/writing
 # hexo new post <title>
+#leohero_sy@163.com

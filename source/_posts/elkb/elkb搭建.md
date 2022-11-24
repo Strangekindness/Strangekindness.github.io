@@ -1,5 +1,7 @@
 ---
 title: ELKB日志中心搭建、日志收集配置-windows版
+date: 2022-11-24 11:28:11
+tags: elkb
 ---
 ## 下载所需要的包
 ```
@@ -103,7 +105,7 @@ connect: {
  }
 ```
 修改_site下的app.js ，修改es的地址为192.168.190.173，如下图,4388行
-![img.png](img.png)
+![img.png](images/elkb/img.png)
 启动head插件
 ```
 npm run start
@@ -140,19 +142,19 @@ http://192.168.190.173:5601
 4.创建索引模式
 在management->Stack Management菜单，进入后，左侧的索引模式子菜单，进入，进行创建索引模式
 
-![img_1.png](img_1.png)
+![img_1.png](images/elkb/img_1.png)
 
 从es中查询所有的索引，可以使用通配符进行查询
-![img_2.png](img_2.png)
+![img_2.png](images/elkb/img_2.png)
 
 创建完之后，进入home首页，点击 分析 一栏
-![img_3.png](img_3.png)
+![img_3.png](images/elkb/img_3.png)
 
 点击 Discovery
-![img_4.png](img_4.png)
+![img_4.png](images/elkb/img_4.png)
 
 进入索引查询界面，可输入检索条件，查询索引对应的日志明细
-![img_5.png](img_5.png)
+![img_5.png](images/elkb/img_5.png)
 
 ### 三、安装部署Filebeats
 1.配置filebeat.yml，主要是输入和输出，输入为某类log文件，输出为logstash
